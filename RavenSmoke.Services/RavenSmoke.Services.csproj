@@ -57,11 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RavenSmoke.Data\RavenSmoke.Data.csproj">
+      <Project>{8C8EC8B8-118B-4FC4-B916-2A6C085974FC}</Project>
+      <Name>RavenSmoke.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RavenSmoke.Models\RavenSmoke.Models.csproj">
+      <Project>{38BD1FBB-3C8F-4D5C-9E82-433D33F68187}</Project>
+      <Name>RavenSmoke.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

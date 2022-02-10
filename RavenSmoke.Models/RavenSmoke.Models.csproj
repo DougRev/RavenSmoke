@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer\CustomerCreate.cs" />
+    <Compile Include="Customer\CustomerDetails.cs" />
+    <Compile Include="Customer\CustomerEdit.cs" />
+    <Compile Include="Customer\CustomerListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
