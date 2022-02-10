@@ -71,23 +71,35 @@ namespace RavenSmoke.Services
                 };
             }
         }
-
-            public bool UpdateCustomer(CustomerEdit model)
+        public bool UpdateCustomer(CustomerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
             {
-                using (var ctx = new ApplicationDbContext())
-                {
-                    var entity = ctx
-                        .Customers
-                        .Single(e => e.CustomerId == model.CustomerId);
+                var entity = ctx
+               .Customers
+               .Single(e => e.CustomerId == model.CustomerId);
 
-                    entity.CustomerId = model.CustomerId;
-                    entity.FirstName = model.FirstName;
-                    entity.LastName = model.LastName;
-                    entity.Address = model.Address;
-                    entity.ModifiedUtc = DateTimeOffset.UtcNow;
+                entity.CustomerId = model.CustomerId;
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.Address = model.Address;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
-                    return ctx.SaveChanges() == 1;
-                }
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteCustomer(int Id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                .Customers
+                .Single(e => e.CustomerId == Id);
+
+                ctx.Customers.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
     }
+}

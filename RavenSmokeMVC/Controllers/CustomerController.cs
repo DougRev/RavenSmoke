@@ -104,5 +104,34 @@ namespace RavenSmokeMVC.Controllers
             ModelState.AddModelError("", "The customer could not be updated.");
             return View(model);
         }
+
+        //GET: Delete
+        //Customer/Delete/{id}
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CustomerService(userId);
+            var model = service.GetCustomerById(id);
+
+            return View(model);
+        }
+
+        //POST: Delete
+        //Customer/Delete/{id}
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new CustomerService(userId);
+
+            service.DeleteCustomer(id);
+
+            TempData["SaveResult"] = "Customer has been deleted.";
+            return RedirectToAction("Index");
+        }
+        
     }
 }
